@@ -1,0 +1,6 @@
+include_recipe '../cookbooks/common/common.rb'
+include_recipe '../cookbooks/bundler/bundler.rb'
+include_recipe '../cookbooks/rbenv/rbenv.rb'
+include_recipe '../cookbooks/mysql/mysql.rb'
+include_recipe '../cookbooks/nginx/nginx.rb'
+include_recipe '../cookbooks/nodejs/nodejs.rb'

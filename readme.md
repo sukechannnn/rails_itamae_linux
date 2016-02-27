@@ -1,0 +1,1 @@
+# Itamae for Rails
