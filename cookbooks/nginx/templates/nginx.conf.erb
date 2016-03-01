@@ -11,13 +11,13 @@ upstream unicorn.<%= node[:app_name] %> {
     }
 
 server {
-        listen 80;
+        listen 8080;
         server_name localhost;
 
         root /rails_app/<%= node[:app_name] %>/public;
 
-        access_log /usr/local/var/log/nginx/<%= node[:app_name] %>_access.log;
-        error_log /usr/local/var/log/nginx/<%= node[:app_name] %>_error.log;
+        access_log /var/log/nginx/access.log;
+        error_log /var/log/nginx/error.log;
 
         client_max_body_size 100m;
         error_page 500 502 503 504 /500.html;

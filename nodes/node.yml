@@ -1,1 +1,6 @@
+user_name: 'vagrant'
 app_name: 'app_name'
+ruby_version: '2.3.0'
+rails_version: '5.0.0.beta3'
+gems:
+  - 'bundler'
