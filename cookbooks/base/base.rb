@@ -62,3 +62,40 @@ package 'libxml2-devel'
 package 'libxslt'
 package 'libxslt-devel'
 package 'vim'
+
+# install anyenv
+ANYENV_ROOT = '/usr/local/anyenv'
+
+remote_file  '~/.bashrc' do
+  source './files/.bashrc'
+  mode '755'
+  owner "#{node[:user]}"
+end
+
+directory "#{ANYENV_ROOT}/plugins" do
+  not_if "test -d #{ANYENV_ROOT}/plugins"
+end
+
+git ANYENV_ROOT do
+  repository 'https://github.com/riywo/anyenv'
+end
+
+git "#{ANYENV_ROOT}/plugins/anyenv-update" do
+  repository 'https://github.com/znz/anyenv-update.git'
+end
+
+git "#{ANYENV_ROOT}/plugins/anyenv-git" do
+  repository 'https://github.com/znz/anyenv-git.git'
+end
+
+execute 'exec $SHELL -l'
+
+execute 'anyenv install rbenv' do
+  not_if 'rbenv -v'
+end
+
+execute 'anyenv install ndenv' do
+  not_if 'ndenv -v'
+end
+
+execute 'exec $SHELL -l'
