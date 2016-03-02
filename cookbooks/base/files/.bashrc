@@ -5,6 +5,5 @@ if [ -f /etc/bashrc ]; then
         . /etc/bashrc
 fi
 
-export ANYENV_ROOT="/usr/local/anyenv"
-export PATH="$ANYENV_ROOT/bin:$PATH"
+export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"

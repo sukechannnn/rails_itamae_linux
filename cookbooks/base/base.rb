@@ -32,10 +32,13 @@ package "http://rpms.famillecollet.com/enterprise/remi-release-#{node[:platform_
   not_if 'rpm -q remi-release'
 end
 
-execute 'sudo yum update -y --exclude=kernel* --exclude=centos*'
+# execute 'yum --disablerepo=epel update nss'
+
+execute 'sudo yum --disablerepo=epel update -y --exclude=kernel* --exclude=centos*'
 
 execute "yum groupinstall -y 'Development Tools'"
 
+package 'db4-devel'
 package 'git'
 package 'curl'
 package 'wget'
@@ -51,7 +54,6 @@ package 'sqlite-devel'
 package 'libyaml'
 package 'libyaml-devel'
 package 'tcl-devel'
-package 'db4-devel'
 package 'libffi-devel'
 package 'libxml2'
 package 'libxml2-devel'
@@ -59,39 +61,42 @@ package 'libxslt'
 package 'libxslt-devel'
 package 'vim'
 
-# install anyenv
-ANYENV_ROOT = '/usr/local/anyenv'
+install anyenv
+HOME_DIR = "/home/#{node[:user]}"
 
-remote_file  '~/.bashrc' do
-  source './files/.bashrc'
-  mode '755'
-  owner "#{node[:user]}"
+execute 'git clone https://github.com/riywo/anyenv ~/.anyenv' do
+  not_if "test -d #{HOME_DIR}/.anyenv"
+  user "#{node[:user]}"
 end
 
-directory "#{ANYENV_ROOT}/plugins" do
-  not_if "test -d #{ANYENV_ROOT}/plugins"
+directory "#{HOME_DIR}/.anyenv/plugins" do
+  not_if "test -d #{HOME_DIR}/.anyenv/plugins"
+  user "#{node[:user]}"
 end
 
-git ANYENV_ROOT do
-  repository 'https://github.com/riywo/anyenv'
-end
-
-git "#{ANYENV_ROOT}/plugins/anyenv-update" do
+git "#{HOME_DIR}/.anyenv/plugins/anyenv-update" do
   repository 'https://github.com/znz/anyenv-update.git'
+  user "#{node[:user]}"
 end
 
-git "#{ANYENV_ROOT}/plugins/anyenv-git" do
+git "#{HOME_DIR}/.anyenv/plugins/anyenv-git" do
   repository 'https://github.com/znz/anyenv-git.git'
+  user "#{node[:user]}"
 end
 
-execute 'exec $SHELL -l'
+remote_file "#{HOME_DIR}/.bashrc" do
+  source './files/.bashrc'
+  mode '777'
+  owner "#{node[:user]}"
+  user "#{node[:user]}"
+end
 
-execute 'anyenv install rbenv' do
+execute '/bin/bash -lc "anyenv install rbenv"' do
   not_if 'rbenv -v'
+  user "#{node[:user]}"
 end
 
-execute 'anyenv install ndenv' do
+execute '/bin/bash -lc "anyenv install ndenv"' do
   not_if 'ndenv -v'
+  user "#{node[:user]}"
 end
-
-execute 'exec $SHELL -l'
