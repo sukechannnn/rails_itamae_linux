@@ -1,6 +1,7 @@
 node[:rbenv][:versions].each do |version|
-  execute "rbenv install #{version}" do
+  execute "/bin/bash -lc \"rbenv install #{version}\"" do
     not_if "rbenv versions | grep #{version}"
+    user "#{node[:user]}"
   end
 end
 
