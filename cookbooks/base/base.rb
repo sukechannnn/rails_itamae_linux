@@ -32,11 +32,7 @@ package "http://rpms.famillecollet.com/enterprise/remi-release-#{node[:platform_
   not_if 'rpm -q remi-release'
 end
 
-# # kernel-devel install
-# package 'ftp://mirror.switch.ch/pool/4/mirror/scientificlinux/6.4/x86_64/updates/security/kernel-devel-2.6.32-358.23.2.el6.x86_64.rpm' do
-#   user 'root'
-#   not_if 'rpm -qa | grep kernel-devel'
-# end
+execute 'sudo yum update -y --exclude=kernel* --exclude=centos*'
 
 execute "yum groupinstall -y 'Development Tools'"
 
