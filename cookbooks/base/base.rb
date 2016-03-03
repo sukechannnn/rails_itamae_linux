@@ -17,7 +17,6 @@ file '/etc/ssh/sshd_config' do
 end
 
 file '/etc/ssh/sshd_config' do
-  user 'root'
   action :edit
   block do |content|
     content.gsub!(/#PermitRootLogin yes/, 'PermitRootLogin no')
@@ -31,8 +30,6 @@ package 'epel-release'
 package "http://rpms.famillecollet.com/enterprise/remi-release-#{node[:platform_version][0]}.rpm" do
   not_if 'rpm -q remi-release'
 end
-
-# execute 'yum --disablerepo=epel update nss'
 
 execute 'sudo yum --disablerepo=epel update -y --exclude=kernel* --exclude=centos*'
 
