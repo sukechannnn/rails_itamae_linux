@@ -3,9 +3,10 @@ app_name: 'app_name'
 rbenv:
   versions:
     - '2.3.0'
-  global:
-    - '2.3.0'
+  global: '2.3.0'
 rails_version: '5.0.0.beta3'
 nodejs_version: 'v4.3.1'
 gems:
   - 'bundler'
+mysql:
+  password: ''
