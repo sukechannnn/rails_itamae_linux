@@ -25,15 +25,16 @@ file '/etc/ssh/sshd_config' do
   mode '600'
 end
 
-package 'epel-release'
+# なぜかこれ入れると死ぬ
+# package 'epel-release'
 
 package "http://rpms.famillecollet.com/enterprise/remi-release-#{node[:platform_version][0]}.rpm" do
   not_if 'rpm -q remi-release'
 end
 
-execute 'sudo yum --disablerepo=epel update -y --exclude=kernel* --exclude=centos*'
-
 execute "yum groupinstall -y 'Development Tools'"
+
+execute 'sudo yum --disablerepo=epel update -y --exclude=kernel* --exclude=centos*'
 
 package 'db4-devel'
 package 'git'
