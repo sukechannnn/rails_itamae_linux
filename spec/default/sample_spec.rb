@@ -31,3 +31,7 @@ end
 describe file('/usr/local/lib/mecab/dic/ipadic/') do
   it { should be_directory }
 end
+
+describe file('/home/vagrant/custom.dic') do
+  it { should be_file }
+end
