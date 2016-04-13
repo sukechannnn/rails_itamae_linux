@@ -35,6 +35,21 @@ file '/etc/ssh/sshd_config' do
   mode '600'
 end
 
+package 'git'
+package 'curl'
+package 'wget'
+package 'tar'
+package 'make'
+package 'openssl'
+package 'libxml2'
+package 'vim'
+
+# install kernel-devel
+execute 'wget "ftp://mirror.switch.ch/pool/4/mirror/scientificlinux/6.3/x86_64/updates/security/kernel-devel-2.6.32-431.el6.x86_64.rpm"; \
+         sudo rpm -ivh kernel-devel-2.6.32-431.el6.x86_64.rpm' do
+  not_if 'rpm -qa | grep kernel-devel'
+end
+
 # なぜかこれ入れると死ぬ
 # package 'epel-release'
 case node[:platform]
@@ -47,15 +62,6 @@ when %r(redhat|fedora)
 when %r(debian|ubuntu)
   execute "sudo apt-get update"
 end
-
-package 'git'
-package 'curl'
-package 'wget'
-package 'tar'
-package 'make'
-package 'openssl'
-package 'libxml2'
-package 'vim'
 
 case node[:platform]
 when %r(debian|ubuntu)

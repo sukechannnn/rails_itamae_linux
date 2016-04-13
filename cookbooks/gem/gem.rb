@@ -1,8 +1,8 @@
 node[:gems].each do |gem|
-  execute "gem install #{gem}" do
+  execute "/bin/bash -lc \"gem install #{gem}\"" do
     not_if "gem list | grep #{gem}"
+    user "#{node[:user]}"
   end
-  user "#{node[:user]}"
 end
 
 execute "/bin/bash -lc \"gem install rails -v #{node[:rails_version]}\"" do
