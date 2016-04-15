@@ -44,14 +44,6 @@ package 'openssl'
 package 'libxml2'
 package 'vim'
 
-# install kernel-devel
-execute 'wget "ftp://mirror.switch.ch/pool/4/mirror/scientificlinux/6.3/x86_64/updates/security/kernel-devel-2.6.32-431.el6.x86_64.rpm"; \
-         sudo rpm -ivh kernel-devel-2.6.32-431.el6.x86_64.rpm' do
-  not_if 'rpm -qa | grep kernel-devel'
-end
-
-# なぜかこれ入れると死ぬ
-# package 'epel-release'
 case node[:platform]
 when %r(redhat|fedora)
   package "http://rpms.famillecollet.com/enterprise/remi-release-#{node[:platform_version][0]}.rpm" do

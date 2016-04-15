@@ -9,6 +9,8 @@ GEM
       schash (~> 0.1.0)
       specinfra (>= 2.37.0, < 3.0.0)
       thor
+    itamae-plugin-recipe-yk_kernel_devel (0.1.0)
+      itamae (~> 1.9.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.0.2)
@@ -27,6 +29,7 @@ PLATFORMS
 
 DEPENDENCIES
   itamae
+  itamae-plugin-recipe-yk_kernel_devel
 
 BUNDLED WITH
    1.11.2
