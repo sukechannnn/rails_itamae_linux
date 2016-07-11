@@ -1,6 +1,6 @@
 Vagrant.configure(2) do |config|
 
-  config.vm.box = "kogurek1/centos72_64_min"
+  config.vm.box = "debian81"
   config.vm.hostname = "vagrant-centos72"
 
   config.vm.network "forwarded_port", guest: 3000, host: 8080
