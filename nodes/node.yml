@@ -3,14 +3,11 @@ home_dir: '/home/vagrant'
 app_name: 'app_name'
 rbenv:
   versions:
-    - '2.1.0'
-  global: '2.1.0'
-rails_version: '5.0.0.beta3'
+    - '2.3.0'
+  global: '2.3.0'
+rails_version: '4.2.6'
 nodejs_version: 'v4.3.1'
 gems:
   - 'bundler'
 mysql:
   password: ''
-mecab:
-  hatena: '1'
-  wikipedia: '1'

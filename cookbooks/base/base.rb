@@ -35,15 +35,6 @@ file '/etc/ssh/sshd_config' do
   mode '600'
 end
 
-package 'git'
-package 'curl'
-package 'wget'
-package 'tar'
-package 'make'
-package 'openssl'
-package 'libxml2'
-package 'vim'
-
 case node[:platform]
 when %r(redhat|fedora)
   package "http://rpms.famillecollet.com/enterprise/remi-release-#{node[:platform_version][0]}.rpm" do
@@ -54,6 +45,15 @@ when %r(redhat|fedora)
 when %r(debian|ubuntu)
   execute "sudo apt-get update"
 end
+
+package 'git'
+package 'curl'
+package 'wget'
+package 'tar'
+package 'make'
+package 'openssl'
+package 'libxml2'
+package 'vim'
 
 case node[:platform]
 when %r(debian|ubuntu)
