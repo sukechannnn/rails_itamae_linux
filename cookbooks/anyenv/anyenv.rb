@@ -23,8 +23,9 @@ end
 
 remote_file "#{HOME_DIR}/.bashrc" do
   source './files/.bashrc'
-  mode '755'
-  owner "#{node[:user]}"
+  # sudo で実行する場合は下記要らない
+  # mode '755'
+  # owner "#{node[:user]}"
   user "#{node[:user]}"
 end
 
