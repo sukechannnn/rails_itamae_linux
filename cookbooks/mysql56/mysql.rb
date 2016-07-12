@@ -11,6 +11,7 @@ when %r(redhat|fedora)
     not_if 'rpm -q mysql-community-release-el6-5'
   end
 when %r(debian|ubuntu)
+  # debian & ubuntu では、mysqlを入れる際に対話モードになってしまってうまくインストール出来ない
   # execute 'export DEBIAN_FRONTEND=noninteractive;\
   # echo mysql-apt-config mysql-apt-config/enable-repo select mysql-5.6 | sudo debconf-set-selections;'
   # # execute 'wget http://dev.mysql.com/get/mysql-apt-config_0.3.3-2ubuntu14.04_all.deb'
