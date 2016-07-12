@@ -70,6 +70,7 @@ when %r(debian|ubuntu)
   package 'ruby-dev'
   package 'libsqlite3-dev'
   package 'tcl-dev'
+  package 'software-properties-common'
 when %r(redhat|fedora|amazon)
   package 'db4-devel'
   package 'zlib-devel'

@@ -12,12 +12,12 @@ when %r(debian|ubuntu)
   #   not_if 'mysql --version | grep 5.6'
   # end
 
-  execute 'export DEBIAN_FRONTEND=noninteractive; echo mysql-apt-config mysql-apt-config/enable-repo select mysql-5.6-dmr | sudo debconf-set-selections;'
+  execute 'export DEBIAN_FRONTEND=noninteractive;\
+  echo mysql-apt-config mysql-apt-config/enable-repo select mysql-5.6-dmr | sudo debconf-set-selections;'
   # execute 'wget http://dev.mysql.com/get/mysql-apt-config_0.3.3-2ubuntu14.04_all.deb'
   # execute 'wget -O mysql-apt-config.deb https://dev.mysql.com/get/mysql-apt-config_0.3.7-1debian8_all.deb'
   # execute 'dpkg -i --force-confdef --force-confold mysql-apt-config_0.3.3-2ubuntu14.04_all.deb'
-  # execute 'dpkg -i --force-confdef --force-confold mysql-apt-config_0.3.3-2ubuntu14.04_all.deb'
-  execute 'sudo dpkg -i mysql-apt-config.deb'
+  execute 'sudo dpkg -i mysql-apt-config_0.3.3-2ubuntu14.04_all.deb'
   # package 'mysql-apt-config_0.3.3-2ubuntu14.04_all.deb'
   execute "sudo apt-get update"
 end
