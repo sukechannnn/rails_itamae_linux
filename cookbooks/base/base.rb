@@ -71,6 +71,7 @@ when %r(debian|ubuntu)
   package 'libsqlite3-dev'
   package 'tcl-dev'
   package 'software-properties-common'
+  package 'debconf-utils'
 when %r(redhat|fedora|amazon)
   package 'db4-devel'
   package 'zlib-devel'
